@@ -1,0 +1,1 @@
+This is a repository for an application as an QA Software Engineering Intern at Genesys. It involves using Playwright to write tests for a provided dummy website to guarantee website functionality. The directions for this project are included as a PDF in this repository.
