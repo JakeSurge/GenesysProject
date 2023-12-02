@@ -41,6 +41,14 @@ test("StandardUserCanLogInto", async ({ page }) => {
     await logInButton.click();
 
     //verifying new page has been reached
-    //todo:enter your code here
+    //Method 1
+    //search for title element
+    let title = page.locator(".title");
 
+    //confirm text is correct meaning new page reached
+    await expect(title).toHaveText("Products");
+
+    //Method 2
+    //confirm url has changed to correct url
+    await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
 });
