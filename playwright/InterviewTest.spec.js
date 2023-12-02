@@ -1,7 +1,7 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
 
-test("Example Test", async ({ page }) => {
+test("Click Test", async ({ page }) => {
     //go to initial page
     await page.goto("https://playwright.dev/docs/writing-tests");
 
