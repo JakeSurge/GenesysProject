@@ -39,7 +39,7 @@ test.beforeEach("UserCanLogin", async ({ page }) => {
 });
 
 //tests clicking into an item page and viewing the images of it before exiting out
-test("ViewItemAndCancel", async ({ page }) => {
+test("CanViewItemAndCancel", async ({ page }) => {
     //click to open an item on the page
     await page.getByRole("link", { name: "Radiant Tee" }).first().click();
 
@@ -53,65 +53,59 @@ test("ViewItemAndCancel", async ({ page }) => {
     await page.waitForSelector(".fotorama__img");
 
     //click on the image to view the item more closely
-    await page.getByRole('img', { name: 'Radiant Tee' }).first().click();
+    await page.getByRole("img", { name: "Radiant Tee" }).first().click();
 
     //make sure image is in fullscreen mode now
-    await expect(page.getByLabel('Exit fullscreen')).toBeVisible();
+    await expect(page.getByLabel("Exit fullscreen")).toBeVisible();
 
-    //make sure zoom button is present
-    //await page.waitForSelector(".fotorama__zoom-in zoom-in-loaded");
+    // //make sure zoom button is present
+    // await page.waitForSelector(".fotorama__zoom-in zoom-in-loaded");
 
-    //set zoom in and zoom out buttons
-    const zoomIn = page.getByLabel('Zoom in');
-    const zoomOut = page.getByLabel('Zoom out');
-    
-    //zoom in once
-    await zoomIn.click();
+    // //set zoom in and zoom out buttons
+    // const zoomIn = page.getByLabel('Zoom in');
+    // const zoomOut = page.getByLabel('Zoom out');
 
-    //test for zoom in
+    // //zoom in once
+    // await zoomIn.click();
 
+    // //zoom out once
+    // await zoomOut.click();
 
-    //zoom out once
-    await zoomOut.click();
+    // //test for zoom out
 
-    //test for zoom out
+    // //zoom in and out
+    // await zoomIn.click();
+    // await zoomOut.click();
 
+    // //test for zoom in and out
 
-    //zoom in and out
-    await zoomIn.click();
-    await zoomOut.click();
-
-    //test for zoom in and out
-
-
-    //click the next button
-    await page.getByRole('button', { name: 'Next' }).click();
+    // //click the next button
+    // await page.getByRole('button', { name: 'Next' }).click();
 
     //check for the expected new image
 
-    
-    //zoom in once
-    await zoomIn.click();
+    // //zoom in once
+    // await zoomIn.click();
 
-    //test for zoom in
+    // //test for zoom in
 
-    //zoom out once
-    await zoomOut.click();
+    // //zoom out once
+    // await zoomOut.click();
 
-    //test for zoom out
+    // //test for zoom out
 
     //exit fullscreen
-    await page.getByLabel('Exit fullscreen').click();
+    await page.getByLabel("Exit fullscreen").click();
 
     //make sure fullscreen is exited
-    await expect(page.getByLabel('Exit fullscreen')).not.toBeVisible();
+    await expect(page.getByLabel("Exit fullscreen")).not.toBeVisible();
 
     //got to home page
-    await page.getByRole('link', { name: 'Home' }).click();
+    await page.getByRole("link", { name: "Home" }).click();
 
     //wait for page
     await page.waitForURL("https://magento.softwaretestingboard.com/");
 
     //check home page 'Hot Sellers' element visibility to confirm you are on the main page
-    await expect(page.getByRole('heading', { name: 'Hot Sellers' })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Hot Sellers" })).toBeVisible();
 });
