@@ -20,6 +20,9 @@ test("UserCanLogin", async ({ page }) => {
     //compare text of sign in button to expected text
     await expect(signInButton).toHaveText("Sign In");
 
+    //wait for selector email
+    await page.waitForSelector("#email");
+
     //type in email and password
     await page.locator("#email").fill("jakobsurge@gmail.com");
     await page.getByLabel("password").fill("$ecretP@$$word123");
