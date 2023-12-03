@@ -1,6 +1,5 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
-const { beforeEach } = require("node:test");
 
 //Run the login test before the add item to cart test
 test.beforeEach("UserCanLogin", async ({ page }) => {
