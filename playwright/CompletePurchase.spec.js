@@ -38,23 +38,23 @@ test.beforeEach("UserCanLogin", async ({ page }) => {
     await expect(page.getByRole("banner").getByText("Welcome, Jakob Surgeon!")).toBeVisible();
 });
 
-//tests adding an item to the cart, assumes there are no items currently on account
-test("CanAddItemToCart", async ({ page }) => {
+//tests completing a purchase after adding it to the cart
+test("CanCompletePurchase", async ({ page }) => {
     //click to open an item on the page
-    await page.getByRole("link", { name: "Argus All-Weather Tank" }).first().click();
+    await page.getByRole("link", { name: "Hero Hoodie" }).first().click();
 
     //wait for new page
-    await page.waitForURL("https://magento.softwaretestingboard.com/argus-all-weather-tank.html");
+    await page.waitForURL("https://magento.softwaretestingboard.com/hero-hoodie.html");
 
     //check for correct item title
-    await expect(page.locator(".base")).toHaveText("Argus All-Weather Tank");
+    await expect(page.locator(".base")).toHaveText("Hero Hoodie");
 
     //wait for size button to load
     await page.waitForSelector("#option-label-size-143-item-168");
 
     //select size and color
     await page.getByLabel("M", { exact: true }).click();
-    await page.getByLabel("Gray").click();
+    await page.getByLabel("Green").click();
 
     //add to cart
     await page.getByRole("button", { name: "Add to Cart" }).click();
@@ -62,18 +62,20 @@ test("CanAddItemToCart", async ({ page }) => {
     //open the cart menu
     await page.getByRole("link", { name: " My Cart 1 1\nitems" }).click();
 
-    //open the cart
-    await page.getByRole("link", { name: "View and Edit Cart" }).click();
+    //click the proceed to cart button
+    await page.getByRole("button", { name: "Proceed to Checkout" }).click();
 
-    //wait for cart page
-    await page.waitForURL("https://magento.softwaretestingboard.com/checkout/cart/");
-
-    //make sure the proceed to checkout button exists
-    await expect(page.getByRole("button", { name: "Proceed to Checkout" })).toBeVisible();
-
-    //remove the item
-    await page.getByRole("link", { name: " Remove item" }).click();
-
-    //make sure the cart is now empty
-    await expect(page.locator("#maincontent").getByText("You have no items in your")).toBeVisible();
+    await page.getByRole("button", { name: "+New Address" }).click();
+    await page.getByLabel("Street Address: Line 1").fill("1100 E 5th St");
+    await page.getByLabel("City").fill("Anderson");
+    await page.locator('select[name="region_id"]').selectOption("24");
+    await page.getByLabel("Zip/Postal Code").fill("46012");
+    await page.getByLabel("Phone Number").fill("5133843088");
+    await page.getByLabel("Save in address book").uncheck();
+    await page.getByRole("button", { name: "Ship here" }).click();
+    await page.getByLabel("Table Rate").check();
+    await page.getByRole("button", { name: "Next" }).click();
+    await page.getByLabel("My billing and shipping").check();
+    await page.getByRole("button", { name: "Place Order" }).click();
+    //await page.getByRole('link', { name: '000036394' }).click();
 });
