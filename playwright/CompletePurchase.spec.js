@@ -41,17 +41,17 @@ test.beforeEach("UserCanLogin", async ({ page }) => {
 //tests completing a purchase after adding it to the cart
 test("CanCompletePurchase", async ({ page }) => {
     //click to open an item on the page
-    await page.getByRole("link", { name: "Hero Hoodie" }).first().click();
+    await page.getByRole("link", { name: "Argus All-Weather Tank" }).first().click();
 
     //wait for new page
-    await page.waitForURL("https://magento.softwaretestingboard.com/hero-hoodie.html");
+    await page.waitForURL("https://magento.softwaretestingboard.com/argus-all-weather-tank.html");
 
     //wait for size button to load
     await page.waitForSelector("#option-label-size-143-item-168");
 
     //select size and color
     await page.getByLabel("M", { exact: true }).click();
-    await page.getByLabel("Green").click();
+    await page.getByLabel("Gray").click();
 
     //add to cart
     await page.getByRole("button", { name: "Add to Cart" }).click();
@@ -115,7 +115,7 @@ test("CanCompletePurchase", async ({ page }) => {
     await placeOrder.click();
 
     //wait for the url
-    await page.waitForURL("https://magento.softwaretestingboard.com/checkout/onepage/success/");
+    await page.waitForURL("https://magento.softwaretestingboard.com/checkout/onepage/success/**");
 
     //double check it is the right page
     await expect(page.locator(".base")).toHaveText("Thank you for your purchase!");
@@ -132,7 +132,6 @@ test("CanCompletePurchase", async ({ page }) => {
     //find the code of the order with the url
     //it is always 1 more than the url code
     const orderCode = parseInt(page.url().slice(67, 72)) + 1;
-    console.log(orderCode);
 
     //wait for selector to load in
     await page.waitForSelector(".base");

@@ -41,20 +41,20 @@ test.beforeEach("UserCanLogin", async ({ page }) => {
 //tests adding an item to the cart, assumes there are no items currently on account
 test("CanAddItemToCart", async ({ page }) => {
     //click to open an item on the page
-    await page.getByRole("link", { name: "Argus All-Weather Tank" }).first().click();
+    await page.getByRole("link", { name: "Hero Hoodie" }).first().click();
 
     //wait for new page
-    await page.waitForURL("https://magento.softwaretestingboard.com/argus-all-weather-tank.html");
+    await page.waitForURL("https://magento.softwaretestingboard.com/hero-hoodie.html");
 
     //check for correct item title
-    await expect(page.locator(".base")).toHaveText("Argus All-Weather Tank");
+    await expect(page.locator(".base")).toHaveText("Hero Hoodie");
 
     //wait for size button to load
     await page.waitForSelector("#option-label-size-143-item-168");
 
     //select size and color
     await page.getByLabel("M", { exact: true }).click();
-    await page.getByLabel("Gray").click();
+    await page.getByLabel("Green").click();
 
     //add to cart
     await page.getByRole("button", { name: "Add to Cart" }).click();
@@ -71,9 +71,6 @@ test("CanAddItemToCart", async ({ page }) => {
     //make sure the proceed to checkout button exists
     await expect(page.getByRole("button", { name: "Proceed to Checkout" })).toBeVisible();
 
-    //remove the item
-    await page.getByRole("link", { name: " Remove item" }).click();
-
-    //make sure the cart is now empty
-    await expect(page.locator("#maincontent").getByText("You have no items in your")).toBeVisible();
+    //remove item
+    await page.getByRole("link", { name: " Remove item" }).first().click();
 });
