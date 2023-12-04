@@ -140,6 +140,6 @@ test("CanCompletePurchase", async ({ page }) => {
     //wait for selector to load in
     await page.waitForSelector(".base");
 
-    //confirm the title text to the expected text
+    //compare the title text to the expected text verifying the order
     await expect(page.locator(".base")).toHaveText("Order # 0000" + orderCode.toString());
 });
