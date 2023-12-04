@@ -58,42 +58,6 @@ test("CanViewItemAndCancel", async ({ page }) => {
     //make sure image is in fullscreen mode now
     await expect(page.getByLabel("Exit fullscreen")).toBeVisible();
 
-    // //make sure zoom button is present
-    // await page.waitForSelector(".fotorama__zoom-in zoom-in-loaded");
-
-    // //set zoom in and zoom out buttons
-    // const zoomIn = page.getByLabel('Zoom in');
-    // const zoomOut = page.getByLabel('Zoom out');
-
-    // //zoom in once
-    // await zoomIn.click();
-
-    // //zoom out once
-    // await zoomOut.click();
-
-    // //test for zoom out
-
-    // //zoom in and out
-    // await zoomIn.click();
-    // await zoomOut.click();
-
-    // //test for zoom in and out
-
-    // //click the next button
-    // await page.getByRole('button', { name: 'Next' }).click();
-
-    //check for the expected new image
-
-    // //zoom in once
-    // await zoomIn.click();
-
-    // //test for zoom in
-
-    // //zoom out once
-    // await zoomOut.click();
-
-    // //test for zoom out
-
     //exit fullscreen
     await page.getByLabel("Exit fullscreen").click();
 

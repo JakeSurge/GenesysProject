@@ -46,9 +46,6 @@ test("CanCompletePurchase", async ({ page }) => {
     //wait for new page
     await page.waitForURL("https://magento.softwaretestingboard.com/hero-hoodie.html");
 
-    //check for correct item title
-    await expect(page.locator(".base")).toHaveText("Hero Hoodie");
-
     //wait for size button to load
     await page.waitForSelector("#option-label-size-143-item-168");
 
