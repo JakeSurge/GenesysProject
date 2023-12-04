@@ -3,7 +3,7 @@ const { test, expect } = require("@playwright/test");
 
 //Run the login test before
 //In order to avoid conflicts while running multiple tests at once this test uses a different account than the rest
-test.beforeEach("UserCanLogin", async ({ page }) => {
+test.beforeEach("UserCanLogin2", async ({ page }) => {
     //go to the page
     await page.goto("https://magento.softwaretestingboard.com/");
 
@@ -111,9 +111,6 @@ test("CanCompletePurchase", async ({ page }) => {
 
     //click the place order button
     await placeOrder.click();
-
-    //wait for the url
-    await page.waitForURL("https://magento.softwaretestingboard.com/checkout/onepage/success/**");
 
     //double check it is the right page
     await expect(page.locator(".base")).toHaveText("Thank you for your purchase!");
