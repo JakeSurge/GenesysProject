@@ -1,7 +1,8 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
 
-//Run the login test before the add item to cart test
+//Run the login test before
+//In order to avoid conflicts while running multiple tests at once this test uses a different account than the rest
 test.beforeEach("UserCanLogin", async ({ page }) => {
     //go to the page
     await page.goto("https://magento.softwaretestingboard.com/");
@@ -25,7 +26,7 @@ test.beforeEach("UserCanLogin", async ({ page }) => {
     await page.waitForSelector("#email");
 
     //type in email and password
-    await page.locator("#email").fill("jakobsurge@gmail.com");
+    await page.locator("#email").fill("jrsurgeon@anderson.edu");
     await page.getByLabel("password").fill("$ecretP@$$word123");
 
     //click the sign in button
@@ -35,7 +36,7 @@ test.beforeEach("UserCanLogin", async ({ page }) => {
     await page.waitForURL("https://magento.softwaretestingboard.com/");
 
     //make sure welcome message exists
-    await expect(page.getByRole("banner").getByText("Welcome, Jakob Surgeon!")).toBeVisible();
+    await expect(page.getByRole("banner").getByText("Welcome, Jake Surgeon!")).toBeVisible();
 });
 
 //tests completing a purchase after adding it to the cart
@@ -64,9 +65,6 @@ test("CanCompletePurchase", async ({ page }) => {
 
     //click the proceed to cart button
     await page.getByRole("button", { name: "Proceed to Checkout" }).click();
-
-    //wait for the url
-    await page.waitForURL("https://magento.softwaretestingboard.com/checkout/#shipping");
 
     //check label to make sure it is the right page
     await expect(page.getByText("Shipping Methods")).toBeVisible();

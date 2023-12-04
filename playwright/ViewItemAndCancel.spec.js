@@ -1,7 +1,7 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
 
-//Run the login test before the add item to cart test
+//Run the login test before
 test.beforeEach("UserCanLogin", async ({ page }) => {
     //go to the page
     await page.goto("https://magento.softwaretestingboard.com/");
